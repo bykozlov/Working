@@ -6,5 +6,5 @@ import com.working.model.Usuarios;
 
 public interface IUsuarioRepository extends JpaRepository<Usuarios, Integer>{
 
-	//public Usuarios findByCorreoAn(String usr_usua,String cla_usua);
+	 public Usuarios findByCorreoAndContraseña(String correo, String contraseña);
 }
