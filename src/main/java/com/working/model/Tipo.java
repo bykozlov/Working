@@ -12,7 +12,6 @@ public class Tipo {
 
 	@Id
 	private int id_tipo;
-	private String postulante;
-	private String empresa;
+	private String descripcion;
 	
 }

@@ -15,7 +15,7 @@
    <div class="contenido">
       <div class="sidenav">
          <div class="text">
-            <a href="../index.html"><img class="logo_img" src="../templates/img/logo.png" alt="Imagen no encontrada"></a>
+            <a href="../index.html"><img class="logo_img" src="../static/img/logo.png" alt="Imagen no encontrada"></a>
             <h2>Bienvenido a Working Academy</h2>
          </div>
       </div>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="formulario">
-               <form id="re" class="formularioRegistrar" onsubmit="registrarse(this)" method="post">
+               <form id="re" class="formularioRegistrar" onsubmit="registrarse(this)" action="/registro/guardar" method="post" th:object="${registro}">
 
                   <div class="grupo">
                      <label>Nombre</label>
@@ -79,14 +79,10 @@
                      <input type="password" class="control" name="txtContraseniaReg" placeholder="Ingrese contraseña">
                   </div>
 
-                  <div class="grupo">
-                     <label>Confirmar Contraseña</label>
-                     <input type="password" class="control" name="txtConfirmarContrasenia"
-                        placeholder="Vuelve a ingresar la contraseña">
-                  </div>
+                 
 
                   <div class="boton">
-                     <button type="submit" id="login">Registrar</button>
+                     <button type="submit" id="registro/guardar">Registrar</button>
 
                      <button type="button" onclick="location.href='login.html'" id="registro">Iniciar
                         sesión</button>
