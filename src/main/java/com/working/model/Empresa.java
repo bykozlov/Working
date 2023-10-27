@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="tb_empresa")
+@Table(name="empresa")
 @Data
 public class Empresa {
 
