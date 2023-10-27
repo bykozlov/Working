@@ -84,8 +84,8 @@ public class ProyectoController {
 		return "login";
 	}
 	 
-	@GetMapping("/login")
+	/*@GetMapping("/login")
     public String cargarPaginaIndex() {
         return "login";
-    }
+    }*/
 }
