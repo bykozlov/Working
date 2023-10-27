@@ -16,10 +16,8 @@ public class Usuarios {
 	@Id
 	private int cod_usuario;
 
-	@Column(name="cla_usua")
 	private String contraseña;
 	
-	@Column(name="usr_usua")
 	private String correo;
 	
 	private int id_tipo;

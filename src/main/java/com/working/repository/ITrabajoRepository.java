@@ -7,5 +7,5 @@ import com.working.model.Trabajo;
 
 public interface ITrabajoRepository extends JpaRepository<Trabajo, Integer>{
 
-	public Trabajo findByTrabajos(Integer id_trabajo_);
+	//public Trabajo findfindById_trabajo(Integer id_trabajo);
 }

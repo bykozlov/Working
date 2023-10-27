@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -17,11 +18,11 @@ public class Postulacion {
 	private int id_postulante;
 	private int id_trabajo;
 	
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name ="id_postulante", insertable = false,updatable = false)
 	private Postulante objPostulante;
 	
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name ="id_trabajo", insertable = false,updatable = false)
 	private Trabajo objTrabajo;
 }
