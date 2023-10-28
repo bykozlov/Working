@@ -7,4 +7,5 @@ import com.working.model.Usuarios;
 public interface IUsuarioRepository extends JpaRepository<Usuarios, Integer>{
 
 	 public Usuarios findByCorreoAndContraseña(String correo, String contraseña);
+	 
 }
