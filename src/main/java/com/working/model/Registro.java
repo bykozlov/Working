@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,8 +27,10 @@ public class Registro {
 	private int dni;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha_nacimiento;
-	private String correo_usu;
-	private String contra_usu;
+	@Column(name="correo_usu")
+	private String correo;
+	@Column(name="contra_usu")
+	private String clave;
 	private int id_tipo;
 	
 	

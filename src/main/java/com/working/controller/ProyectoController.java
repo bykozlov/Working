@@ -87,44 +87,42 @@ public class ProyectoController {
 		return "registro";
 	}
 
-/*
-	@GetMapping("/index/login")
-	public String cargarPaginaLogin() {
-		return "login";
-	}
-	*/
+
+	/*@GetMapping("/logout")
+	public String cargarPaginaLogout(Model model) {
+	    model.addAttribute("registro", new Registro());
+	    return "login";
+	}*/
+
 	 //login
 	@GetMapping("/login")
 	public String cargarPaginaLogin(Model model) {
 	    // Aquí, si lo deseas, puedes agregar el modelo necesario para cargar la página de inicio de sesión.
-	    model.addAttribute("usuario", new Usuarios());
+	    model.addAttribute("registro", new Registro());
 	    return "login";
 	}
 
-	@GetMapping("/logout")
-	public String cargarPaginaLogout(Model model) {
-	    model.addAttribute("usuario", new Usuarios());
-	    return "login";
+	
+
+	@PostMapping("/iniciar")
+	public String acceso(@ModelAttribute Registro registro, Model model) {
+		
+		Registro u=repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
+		if (u!=null) {
+			return "menu";
+		}else {
+			model.addAttribute("mensaje","usuario o clave incorrecto ");
+			model.addAttribute("clase","alert alert-danger");
+			return "login";
+		}
+		//System.out.println(usuario);
+		
 	}
 
-	@PostMapping("/login")
-	public String ingresar(Model model, @ModelAttribute Usuarios usuario) {
-	    Usuarios u = repoUsu.findByCorreoAndContraseña(usuario.getCorreo(), usuario.getContraseña());
-	    if (u != null) {
-	        return "registro";
-	    } else {
-	        model.addAttribute("mensaje", "contraseña o correo incorrecto");
-	        model.addAttribute("clase", "alert alert-danger");
-	        return "redirect:bienvenida";
-	    }
-	}
-
-
-
-	@GetMapping("/login")
+	/*@GetMapping("/login")
 	public String cargarPaginaLogin() {
 		return "login";
-	}
+	}*/
 
 	/*@PostMapping("/login")
 	public String login(@RequestParam("txtCorreoIn") String correo_usu, @RequestParam("txtPasswordIn") String contra_usu,
