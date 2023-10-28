@@ -30,7 +30,7 @@
                 </div>
                 
                 <div class="formulario">
-                    <form id="in" class="formularioIniciar" action="/iniciar" method="post" th:object="${registro}">
+                    <form id="in" class="formularioIniciar" action="/login" method="post" th:object="${registro}">
                         <div class="grupo">
                             <label>Correo Electrónico</label>
                             <input type="email" class="control" id="inputCorreo" th:field="*{correo}" name="correo" placeholder="Correo Electrónico" required>
@@ -43,9 +43,10 @@
     
     
                         <div class="boton">
-                            <button type="submit" id="login">Entrar</button>
-                            	
-                            <button type="button" onclick="location.href='/iniciar'" id="registro">Registrarse</button>
+                            
+                            	<button type="submit" class="btn btn-primary">Ingresar</button>
+                              <button type="button" class="btn-registrar"
+                            onclick="location.href='registro'">Registrarse</button>
                         </div>
                     </form>
                     <div class="${clase}" role="alert" th:text="${mensaje}"></div>
