@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +11,19 @@
     <link rel="stylesheet" href="../css/estiloLogin.css">
     <link rel="shortcut icon" href="../img/logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+=======
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="../css/estilo.css">
+	<link rel="stylesheet" href="../css/estiloLogin.css">
+	<link rel="shortcut icon" href="../img/logo.png">
+>>>>>>> 08434cffc577f48947045e3f5d6c495d500fce91
 </head>
+
 <body>
+<<<<<<< HEAD
     <div class="contenido">
         <div class="sidenav">
             <div class="text">
@@ -57,6 +70,54 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		</footer>
     </div>
+=======
+	<div class="contenido">
+
+		<div class="sidenav">
+			<div class="text">
+				<a href="../index.html"><img class="logo_img" src="../img/logo.png" alt="Imagen no encontrada"></a>
+				<h2>Bienvenido a Working Academy</h2>
+			</div>
+		</div>
+
+		<section class="seccion_login">
+			<div class="seccion_login_a">
+				<div class="titulo">
+					<h2>Iniciar Sesión</h2>
+				</div>
+
+				<div class="formulario">
+					<form id="in" class="formularioIniciar" th:object="${registro}" th:action="@{/login}" method="post">
+
+						<div class="grupo">
+							<label>Correo Electrónico</label>
+							<input type="text" th:field="*{correo_usu}" class="control"
+								placeholder="Correo Electrónico">
+						</div>
+
+						<div class="grupo">
+							<label>Contraseña</label>
+							<input type="password" th:field="*{contra_usu}" class="control" placeholder="Contraseña">
+						</div>
+
+						<div class="boton">
+							<button type="submit" id="login">Entrar</button>
+
+							<button type="button" onclick="location.href='webSite/registro.html'"
+								id="registro">Registrarse</button>
+						</div>
+						<div class="error" th:if="${error}">
+							<p th:text="${error}"></p>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</section>
+	</div>
+
+>>>>>>> 08434cffc577f48947045e3f5d6c495d500fce91
 </body>
 <script src="../js/login.js"></script>
+
 </html>
