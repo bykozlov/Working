@@ -101,15 +101,18 @@ public class ProyectoController {
 	    model.addAttribute("registro", new Registro());
 	    return "login";
 	}
-
+	@GetMapping("/salir")
+	public String salirSesion() {
+		return "index2";
+	}
 	
 
-	@PostMapping("/iniciar")
+	@PostMapping("/login")
 	public String acceso(@ModelAttribute Registro registro, Model model) {
 		
 		Registro u=repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
 		if (u!=null) {
-			return "menu";
+			return "index2";
 		}else {
 			model.addAttribute("mensaje","usuario o clave incorrecto ");
 			model.addAttribute("clase","alert alert-danger");
