@@ -259,5 +259,11 @@ public class ProyectoController {
 		// Realiza cualquier lógica adicional aquí si es necesario
 		return "/webSite/carrerasUniversitarias/carreUni9";
 	}
+	
+	
+	@GetMapping("/encuesta") // Define la ruta a la página de encuesta
+    public String mostrarEncuesta() {
+        return "encuesta"; // Retorna el nombre de la vista
+    }
 
 }
