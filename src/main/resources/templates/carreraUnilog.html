@@ -19,23 +19,23 @@
                 <img class="elementos-img" src="../../img/logo.png" alt="Imagen no encontrada">
 
 
-                <ul class="elementos-ul">
-                    <li><a href="../../index.html" class="nav-li">Inicio</a></li>
-                    <li><a href="../carrerasTecnicas/carreratec.html" class="nav-li">Carreras técnicas</a></li>
-                    <li><a href="carreraUni.html" class="nav-li">Carreras universitarias</a></li>
-                </ul>
+                 <ul class="elementos-ul">
+                        <li><a href="/" class="nav-li">Inicio</a></li>
+                        <li><a href="/CarreraTeclog" class="nav-li">Carreras técnicas</a></li>
+                        <li><a href="/CarreraUnilog" class="nav-li">Carreras universitarias</a></li>
+                    </ul>
 
-                <form class="elementos-buscador" method="post" onsubmit="event.preventDefault()">
-                    <input type="search" class="input-buscar" onsearch="borrar()" placeholder="Buscar..."
-                        aria-label="Buscar">
-                </form>
+                    <form class="elementos-buscador" method="post" onsubmit="event.preventDefault()">
+                        <input type="search" class="input-buscar" onsearch="borrar()" placeholder="Buscar..." aria-label="Buscar">
+                    </form>
 
-                <div class="elementos-opciones_final">
-                    <button type="button" class="btn-iniciar" onclick="location.href='../login.html'">Iniciar
-                        sesión</button>
-                    <button type="button" class="btn-registrar"
-                        onclick="location.href='../registro.html'">Registrarse</button>
-                </div>
+                    <div class="elementos-opciones_final">
+                        <button type="button" class="btn-iniciar" onclick="location.href='/login'">Iniciar
+                            sesión</button>
+                        <button type="button" class="btn-registrar"
+                            onclick="location.href='registro'">Registrarse</button>
+                    </div>
+
 
                 <div class="elementos-f">
                     <a target="_blank" class="usuario-img">
@@ -62,7 +62,7 @@
 
         <section class="conten">
             <div class="all1">
-                <a href="carreUni1.html">
+                <a href="CarrUn1">
                     <div class="all1-enlace">
                         <h2>Analista de Ciberseguridad</h2>
 
@@ -84,7 +84,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni2.html">
+                <a href="/CarrUn2">
                     <div class="all1-enlace">
                         <h2>Ingeniero de Seguridad de la información (PE)</h2>
 
@@ -111,7 +111,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni3.html">
+                <a href="/CarrUn3">
                     <div class="all1-enlace">
                         <h2>Analista de Seguridad Informatica - Lima</h2>
 
@@ -130,7 +130,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni4.html">
+                <a href="/CarrUn4">
                     <div class="all1-enlace">
                         <h2>Ingeniero de Sistemas</h2>
 
@@ -151,7 +151,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni5.html">
+                <a href="/CarrUn5">
                     <div class="all1-enlace">
                         <h2>Ingeniero de Sistemas</h2>
 
@@ -175,7 +175,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni6.html">
+                <a href="/CarrUn6">
                     <div class="all1-enlace">
                         <h2>Ingeniero de Sistemas Urgente/Cercado de Lima</h2>
 
@@ -198,7 +198,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni7.html">
+                <a href="/CarrUn7">
                     <div class="all1-enlace">
                         <h2>Ingeniero de Telecomunicaciones</h2>
 
@@ -224,7 +224,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni8.html">
+                <a href="/CarrUn8">
                     <div class="all1-enlace">
                         <h2>Ingeniero de Trasmisiones - Sector de Telecomunicaciones</h2>
 
@@ -247,7 +247,7 @@
             </div>
 
             <div class="all1">
-                <a href="carreUni9.html">
+                <a href="/CarrUn9">
                     <div class="all1-enlace">
                         <h2>Operador NOC</h2>
 
@@ -318,6 +318,19 @@
 </body>
 
 </html>
+<script>
+	window.watsonAssistantChatOptions = {
+		integrationID: "597bb1b7-740c-448d-b491-453ddc484fc6", // The ID of this integration.
+		region: "au-syd", // The region your integration is hosted in.
+		serviceInstanceID: "6ed585e9-3ad2-46ea-9b4e-10b794f51eaf", // The ID of your service instance.
+		onLoad: function (instance) {instance.render();}
+	};
+	setTimeout(function () {
+		const t = document.createElement('script');
+		t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+		document.head.appendChild(t);
+	});
+</script>
 <script src="../../js/login.js"></script>
 <script src="../../js/carruseluni.js"></script>
 <script src="../../js/filtroBusqueda.js"></script>

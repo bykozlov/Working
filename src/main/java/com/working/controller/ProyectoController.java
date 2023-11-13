@@ -34,6 +34,11 @@ public class ProyectoController {
 
 
 	// controlador para cargar la pagina
+	// controlador para cargar la pagina
+	@GetMapping("/")
+	public String cargarprincipal() {
+		return "principal";
+	}
 	@GetMapping("/index")
 	public String cargarPaginaInicial() {
 		return "index";
@@ -103,7 +108,7 @@ public class ProyectoController {
 	}
 	@GetMapping("/salir")
 	public String salirSesion() {
-		return "index2";
+		return "principal";
 	}
 	
 
@@ -112,7 +117,7 @@ public class ProyectoController {
 		
 		Registro u=repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
 		if (u!=null) {
-			return "index2";
+			return "index";
 		}else {
 			model.addAttribute("mensaje","usuario o clave incorrecto ");
 			model.addAttribute("clase","alert alert-danger");
@@ -146,8 +151,19 @@ public class ProyectoController {
 		return "CarreraTec";
 	}
 
-	@GetMapping("/CarreraUni")
+	@GetMapping("/CarreraUnilog")
 	public String redireccionarACarreraUni() {
+		// Realiza cualquier lógica adicional aquí si es necesario
+		return "CarreraUnilog";
+	}
+	@GetMapping("/CarreraTeclog")
+	public String redireccionarACarreraTeclog() {
+		// Realiza cualquier lógica adicional aquí si es necesario
+		return "CarreraTeclog";
+	}
+
+	@GetMapping("/CarreraUni")
+	public String redireccionarACarreraUnilog() {
 		// Realiza cualquier lógica adicional aquí si es necesario
 		return "CarreraUni";
 	}

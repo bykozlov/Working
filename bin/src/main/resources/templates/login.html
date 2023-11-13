@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,48 +9,61 @@
     <link rel="stylesheet" href="../css/estilo.css">
     <link rel="stylesheet" href="../css/estiloLogin.css">
     <link rel="shortcut icon" href="../img/logo.png">
-</head>
-<body>
-    <div class="contenido">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+</head>
+
+<body>
+
+    <div class="contenido">
         <div class="sidenav">
             <div class="text">
                 <a href="../index.html"><img class="logo_img" src="../img/logo.png" alt="Imagen no encontrada"></a>
                 <h2>Bienvenido a Working Academy</h2>
             </div>
-         </div>
+        </div>
 
-            <section class="seccion_login">
-                <div class="seccion_login_a">
-                    <div class="titulo">
-                        <h2>Iniciar Sesión</h2>
-                    </div>
-                    
-                    <div class="formulario">
-                        <form id="in" class="formularioIniciar" onsubmit="logearse(this)" method="post">
-    
-                            <div class="grupo">
-                               <label>Correo Electrónico</label>
-                               <input type="text" name="txtCorreoIn" class="control" placeholder="Correo Electronico">
-                            </div>
-    
-                            <div class="grupo">
-                               <label>Contraseña</label>
-                               <input type="password" name="txtPasswordIn" class="control" placeholder="Contraseña">
-                            </div>
-    
-                            <div class="boton">
-                                <button type="submit" id = "login">Entrar</button>
-    
-                                <button type="button"  onclick="location.href='registro.html'" id = "registro">Registrarse</button>
-                            </div>
-                         </form>
-
-                    </div>
+        <section class="seccion_login">
+            <div class="seccion_login_a">
+                <div class="titulo">
+                    <h2>Iniciar Sesión</h2>
                 </div>
-            </section>
-</div>
+                
+                <div class="formulario">
+                    <form id="in" class="formularioIniciar" action="/login" method="post" th:object="${registro}">
+                        <div class="grupo">
+                            <label>Correo Electrónico</label>
+                            <input type="email" class="control" id="inputCorreo" th:field="*{correo}" name="correo" placeholder="Correo Electrónico" required>
+                        </div>
+    
+                        <div class="grupo">
+                            <label>Contraseña</label>
+                            <input type="password" class="control" id="inputContraseña" th:field="*{clave}" name="contraseña" placeholder="Contraseña" required minlength="6">
+                        </div>
+    
+    
+                        <div class="boton">
+                            
+                            	<button type="submit" class="btn btn-primary">Ingresar</button>
+                              <button type="button" class="btn-registrar"
+                            onclick="location.href='registro'">Registrarse</button>
+                        </div>
+                    </form>
+                    <div class="${clase}" role="alert" th:text="${mensaje}"></div>
+                </div>
+            </div>
+        </section>
+        <footer th:fragment="footer">
+			<!-- jQuery library -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<!-- Popper JS -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+			<!-- Latest compiled JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		</footer>
+    </div>
 
-</body>
+
 <script src="../js/login.js"></script>
+
 </html>
