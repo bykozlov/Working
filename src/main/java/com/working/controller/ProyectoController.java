@@ -1,5 +1,6 @@
 package com.working.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,38 +114,43 @@ public class ProyectoController {
 	
 
 	@PostMapping("/login")
-	public String acceso(@ModelAttribute Registro registro, Model model) {
-		
-		Registro u=repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
-		if (u!=null) {
-			return "index";
-		}else {
-			model.addAttribute("mensaje","usuario o clave incorrecto ");
-			model.addAttribute("clase","alert alert-danger");
-			return "login";
-		}
-		//System.out.println(usuario);
-		
+	public String acceso(@ModelAttribute Registro registro, Model model, HttpSession session) {
+	    Registro u = repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
+
+	    if (u != null) {
+	        // Guardar el nombre del usuario en la sesión (o cualquier otro dato que necesites)
+	        session.setAttribute("nombreUsuario", u.getNom_usu());
+	        session.setAttribute("apellidoUsuario", u.getApe_usu());
+	        session.setAttribute("telefono", u.getTelefono());
+	        session.setAttribute("dniUsu", u.getDni());
+	        session.setAttribute("correoUsu", u.getCorreo());
+	        
+	        return "index";  // o la página que desees mostrar después del login
+	    } else {
+	        model.addAttribute("mensaje", "Usuario o clave incorrecto");
+	        model.addAttribute("clase", "alert alert-danger");
+	        return "login";
+	    }
 	}
 
-	/*@GetMapping("/login")
-	public String cargarPaginaLogin() {
-		return "login";
-	}*/
 
-	/*@PostMapping("/login")
-	public String login(@RequestParam("txtCorreoIn") String correo_usu, @RequestParam("txtPasswordIn") String contra_usu,
-			Model model) {
-		Registro usuario = repoRegistro.findByCorreo_usu(correo_usu);
-
-		if (usuario != null && usuario.getContra_usu().equals(contra_usu)) {
-			return "redirect:/dashboard";
-		} else {
-			model.addAttribute("error", "Credenciales inválidas. Inténtalo de nuevo.");
-			return "login";
-		}
-	}*/
-
+	 @GetMapping("/miperfil")
+	    public String miPerfil(Model model, HttpSession session) {
+	        // Obtener el nombre del usuario desde la sesión
+	        String nombreUsuario = (String) session.getAttribute("nombreUsuario");
+	        String apellidoUsuario = (String) session.getAttribute("apellidoUsuario");
+	        Integer telefono = (Integer) session.getAttribute("telefono");
+	        Integer dniUsu = (Integer) session.getAttribute("dniUsu");
+	        String correoUsu = (String) session.getAttribute("correoUsu");
+	        // Obtener la información del usuario desde la base de datos (usando el nombre de usuario)
+	        model.addAttribute("nombreUsuario", nombreUsuario);
+	        model.addAttribute("apellidoUsuario", apellidoUsuario);
+	        model.addAttribute("telefono", telefono);
+	        model.addAttribute("dniUsu", dniUsu);
+	        model.addAttribute("correoUsu", correoUsu);
+	        return "perfilPostulante";
+	    }
+	
 	@GetMapping("/CarreraTec")
 	public String redireccionarACarreraTec() {
 		// Realiza cualquier lógica adicional aquí si es necesario
