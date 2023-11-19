@@ -1,0 +1,4 @@
+FROM working_academy:17-alpine-JDK
+MAINTAINER working_academy
+COPY target/working_academy-0.0.1-SNAPSHOT.jar  working_academy-app.jar
+ENTRYPOINT ["java","-jar","/working_academy.jar"]

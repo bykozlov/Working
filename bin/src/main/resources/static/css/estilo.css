@@ -1,16 +1,20 @@
-*{
+* {
     font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    margin: 0%;
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: white;
-   
 }
 /*
 ---------------------------------------------------------Encabezado-----------------------------------------------------------------------
 */
-.head{
+.head {
     z-index: 1;
     position: sticky;
     top: 0;
@@ -19,19 +23,22 @@ body{
     font-family: sans-serif;
     display: block;
     background-color: #212529;
-
 }
 
-.head-grupo{
+#cerrarSesion {
+        color: white;
+         text-decoration: none; /* Establece el color del texto a blanco */
+
+}
+.head-grupo {
     margin: 0rem 5rem;
     padding: 0rem 0.75rem;
 }
 
-.head-grupo_elementos{
+.head-grupo_elementos {
     display: flex;
     align-items: center;
 }
-
 .elementos-img{
     width: 40px;
     height: 40px;
@@ -149,7 +156,7 @@ body{
 /*
 ---------------------------------------------------------Cuerpo-------------------------------------------------------------------------
 */
-.link-carreras{
+.link-carreras {
     display: none;
     overflow: hidden;
     width: 100%;
@@ -157,12 +164,13 @@ body{
     border-style: none;
 }
 
-.cuerpo{
+.cuerpo {
+    flex: 1;
     width: 60vw;
     margin: auto;
 }
 
-article{
+article {
     width: 100%;
 }
 .articulo_1{
@@ -242,19 +250,20 @@ article{
 ---------------------------------------------------------P.Página------------------------------------------------------------------------
 */
 
-footer{
+footer {
     font-family: sans-serif;
     background-color: #212529;
-    color:white;
+    color: white;
     padding: 0px 15px;
     box-sizing: border-box;
+    margin-top: auto; /* Hace que el pie de página esté siempre abajo */
 }
 
-.pie_Pagina_Centrado{
+.pie_Pagina_Centrado {
     margin: 0 7.5rem;
 }
 
-.pie_Pagina{
+.pie_Pagina {
     width: 100%;
     display: flex;
     flex-wrap: wrap;

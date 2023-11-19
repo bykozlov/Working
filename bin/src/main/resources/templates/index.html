@@ -27,6 +27,7 @@
 						<li><a href="/index" class="nav-li">Inicio</a></li>
 						<li><a href="/CarreraTec" class="nav-li">Carreras técnicas</a></li>
 						<li><a href="/CarreraUni" class="nav-li">Carreras universitarias</a></li>
+						<li><a href="/miperfil" class="nav-li">Mi Perfil</a></li>
 					</ul>
 
 					<form class="elementos-buscador" method="post" onsubmit="event.preventDefault()">
@@ -34,28 +35,8 @@
 							aria-label="Buscar">
 					</form>
 
+					<a href="#" id="cerrarSesion" class="btn btn-light">Cerrar Sesión</a>
 
-
-					<div class="elementos-opciones_final">
-						 <button type="button" class="btn-iniciar" onclick="location.href='/login'">Iniciar
-                            sesión</button>
-                            
-                        <button type="button" class="btn-registrar"
-                            onclick="location.href='registro'">Registrarse</button>
-                    </div>
-
-					
-
-
-					<div class="elementos-f">
-						<a target="_blank" class="usuario-img">
-							<img class="img-user" src="img/user.png" alt="Imagen no encontrada">
-							<i class="fas fa-caret-down"></i>
-						</a>
-						<ul class="usuario-item-none">
-							<li><a href="#/" class="cerrar">Cerrar Sesión</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</header>
@@ -189,7 +170,15 @@
 		document.head.appendChild(t);
 	});
 </script>
-<script src="js/login.js"></script>
-<script src="js/filtroBusqueda.js"></script>
 
+<script src="js/filtroBusqueda.js"></script>
+<script>
+    document.getElementById('cerrarSesion').addEventListener('click', function() {
+        // Aquí puedes agregar lógica adicional antes de redirigir a /salir
+        var confirmacion = confirm('¿Estás seguro de que deseas cerrar sesión?');
+        if (confirmacion) {
+            window.location.href = '/salir';
+        }
+    });
+</script>
 </html>

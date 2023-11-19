@@ -72,15 +72,16 @@
 							</select>
 						</div>
 
-						<div class="grupo empresa">
+						<div class="grupo empresa" id="cajaEmpresa">
 							<label>Nombre de la empresa</label>
-							<input type="text" class="control" name="txtNombreEmpr" placeholder="Ingrese el nombre">
+							<input type="text" class="control" name="txtNombreEmpr" th:field="*{nomEmpresa}" placeholder="Ingrese el nombre">
 						</div>
+
 
 						<div class="grupo">
 							<label>Correo Electrónico</label>
-							<input type="text" class="control" id="inputCorreo" th:field="*{correo}"
-								name="txtCorreoReg" placeholder="ejemplo@gmail.com">
+							<input type="text" class="control" id="inputCorreo" th:field="*{correo}" name="txtCorreoReg"
+								placeholder="ejemplo@gmail.com">
 						</div>
 
 						<div class="grupo">
@@ -109,6 +110,17 @@
 	</div>
 
 </body>
-<script src="../js/login.js"></script>
+<script>
+    document.getElementById('inputTipo').addEventListener('change', function () {
+        var tipoCuenta = this.value;
+        var cajaEmpresa = document.getElementById('cajaEmpresa');
+
+        if (tipoCuenta === '2') { // Cambia '2' al valor correspondiente al tipo de cuenta de empresa en tu aplicación
+            cajaEmpresa.style.display = 'block'; // Muestra la caja de la empresa
+        } else {
+            cajaEmpresa.style.display = 'none'; // Oculta la caja de la empresa
+        }
+    });
+</script>
 
 </html>
