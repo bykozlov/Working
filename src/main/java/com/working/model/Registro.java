@@ -20,6 +20,7 @@ import lombok.Data;
 public class Registro {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cod_registro;
 	private String nom_usu;
 	private String ape_usu;
@@ -32,7 +33,7 @@ public class Registro {
 	@Column(name="contra_usu")
 	private String clave;
 	private int id_tipo;
-	
+	private String nomEmpresa;
 	
 	@ManyToOne
 	@JoinColumn(name ="id_tipo", insertable = false,updatable = false)

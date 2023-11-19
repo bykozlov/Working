@@ -2,10 +2,13 @@ package com.working.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,7 @@ import com.working.repository.ITipoRepository;
 import com.working.repository.IUsuarioRepository;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class ProyectoController {
@@ -28,11 +32,9 @@ public class ProyectoController {
 
 	@Autowired
 	ITipoRepository repoTipo;
-	
+
 	@Autowired
 	private IUsuarioRepository repoUsu;
-	
-
 
 	// controlador para cargar la pagina
 	// controlador para cargar la pagina
@@ -40,22 +42,13 @@ public class ProyectoController {
 	public String cargarprincipal() {
 		return "principal";
 	}
+
 	@GetMapping("/index")
 	public String cargarPaginaInicial() {
 		return "index";
 	}
 
-	/*
-	 * @GetMapping("/index/HomeAcount/listadoResgistro") public String
-	 * listaReg(Model model) { model.addAttribute("listaRegistro",
-	 * repoRegistro.findAll());
-	 * 
-	 * 
-	 * model.addAttribute("empresa", new Registro());
-	 * model.addAttribute("boton","Registrar");
-	 * 
-	 * return "Registro"; }
-	 */
+	
 	@GetMapping("/registro")
 	public String abrirPagProd(Model model) {
 		// Cargar la lista de tipos y establecerla en el modelo
@@ -93,64 +86,73 @@ public class ProyectoController {
 		return "registro";
 	}
 
+	
 
-	/*@GetMapping("/logout")
-	public String cargarPaginaLogout(Model model) {
-	    model.addAttribute("registro", new Registro());
-	    return "login";
-	}*/
-
-	 //login
+	// login
 	@GetMapping("/login")
 	public String cargarPaginaLogin(Model model) {
-	    // Aquí, si lo deseas, puedes agregar el modelo necesario para cargar la página de inicio de sesión.
-	    model.addAttribute("registro", new Registro());
-	    return "login";
+		// Aquí, si lo deseas, puedes agregar el modelo necesario para cargar la página
+		// de inicio de sesión.
+		model.addAttribute("registro", new Registro());
+		return "login";
 	}
+
 	@GetMapping("/salir")
 	public String salirSesion() {
 		return "principal";
 	}
-	
 
 	@PostMapping("/login")
 	public String acceso(@ModelAttribute Registro registro, Model model, HttpSession session) {
-	    Registro u = repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
+		Registro u = repoRegistro.findByCorreoAndClave(registro.getCorreo(), registro.getClave());
 
-	    if (u != null) {
-	        // Guardar el nombre del usuario en la sesión (o cualquier otro dato que necesites)
-	        session.setAttribute("nombreUsuario", u.getNom_usu());
-	        session.setAttribute("apellidoUsuario", u.getApe_usu());
-	        session.setAttribute("telefono", u.getTelefono());
-	        session.setAttribute("dniUsu", u.getDni());
-	        session.setAttribute("correoUsu", u.getCorreo());
-	        
-	        return "index";  // o la página que desees mostrar después del login
-	    } else {
-	        model.addAttribute("mensaje", "Usuario o clave incorrecto");
-	        model.addAttribute("clase", "alert alert-danger");
-	        return "login";
-	    }
+		if (u != null) {
+			// Guardar el nombre del usuario en la sesión (o cualquier otro dato que
+			// necesites)
+			session.setAttribute("codReg", u.getCod_registro());
+			session.setAttribute("nombreUsuario", u.getNom_usu());
+			session.setAttribute("apellidoUsuario", u.getApe_usu());
+			session.setAttribute("telefono", u.getTelefono());
+			session.setAttribute("dniUsu", u.getDni());
+			session.setAttribute("correoUsu", u.getCorreo());
+			session.setAttribute("nomEmpresa", u.getNomEmpresa());
+			session.setAttribute("lstTipo", u.getId_tipo()); // Agregamos el tipo de cuenta
+
+			return "index"; // o la página que desees mostrar después del login
+		} else {
+			model.addAttribute("mensaje", "Usuario o clave incorrecto");
+			model.addAttribute("clase", "alert alert-danger");
+			return "login";
+		}
 	}
 
-
-	 @GetMapping("/miperfil")
-	    public String miPerfil(Model model, HttpSession session) {
-	        // Obtener el nombre del usuario desde la sesión
-	        String nombreUsuario = (String) session.getAttribute("nombreUsuario");
-	        String apellidoUsuario = (String) session.getAttribute("apellidoUsuario");
-	        Integer telefono = (Integer) session.getAttribute("telefono");
-	        Integer dniUsu = (Integer) session.getAttribute("dniUsu");
-	        String correoUsu = (String) session.getAttribute("correoUsu");
-	        // Obtener la información del usuario desde la base de datos (usando el nombre de usuario)
-	        model.addAttribute("nombreUsuario", nombreUsuario);
-	        model.addAttribute("apellidoUsuario", apellidoUsuario);
-	        model.addAttribute("telefono", telefono);
-	        model.addAttribute("dniUsu", dniUsu);
-	        model.addAttribute("correoUsu", correoUsu);
-	        return "perfilPostulante";
-	    }
+	@GetMapping("/miperfil")
+	public String miPerfil(Model model, HttpSession session) {
+		// Obtener el nombre del usuario desde la sesión
+		
+		String nombreUsuario = (String) session.getAttribute("nombreUsuario");
+		String apellidoUsuario = (String) session.getAttribute("apellidoUsuario");
+		Integer telefono = (Integer) session.getAttribute("telefono");
+		Integer dniUsu = (Integer) session.getAttribute("dniUsu");
+		String correoUsu = (String) session.getAttribute("correoUsu");
+		String nomEmpresa = (String) session.getAttribute("nomEmpresa");
+		// Obtener la información del usuario desde la base de datos (usando el nombre
+		// de usuario)
+		
+		model.addAttribute("nombreUsuario", nombreUsuario);
+		model.addAttribute("apellidoUsuario", apellidoUsuario);
+		model.addAttribute("telefono", telefono);
+		model.addAttribute("dniUsu", dniUsu);
+		model.addAttribute("correoUsu", correoUsu);
+		model.addAttribute("nomEmpresa", nomEmpresa);
+		return "perfilPostulante";
+	}
 	
+	
+	
+
+
+
 	@GetMapping("/CarreraTec")
 	public String redireccionarACarreraTec() {
 		// Realiza cualquier lógica adicional aquí si es necesario
@@ -162,6 +164,7 @@ public class ProyectoController {
 		// Realiza cualquier lógica adicional aquí si es necesario
 		return "CarreraUnilog";
 	}
+
 	@GetMapping("/CarreraTeclog")
 	public String redireccionarACarreraTeclog() {
 		// Realiza cualquier lógica adicional aquí si es necesario
@@ -281,11 +284,10 @@ public class ProyectoController {
 		// Realiza cualquier lógica adicional aquí si es necesario
 		return "/webSite/carrerasUniversitarias/carreUni9";
 	}
-	
-	
+
 	@GetMapping("/encuesta") // Define la ruta a la página de encuesta
-    public String mostrarEncuesta() {
-        return "encuesta"; // Retorna el nombre de la vista
-    }
+	public String mostrarEncuesta() {
+		return "encuesta"; // Retorna el nombre de la vista
+	}
 
 }

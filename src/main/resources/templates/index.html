@@ -35,9 +35,8 @@
 							aria-label="Buscar">
 					</form>
 
+					<a href="#" id="cerrarSesion" class="btn btn-light">Cerrar Sesión</a>
 
-
-					 <a href="/salir" type="button" class="btn btn-light">Cerrar Sesion</a>
 				</div>
 			</div>
 		</header>
@@ -171,7 +170,15 @@
 		document.head.appendChild(t);
 	});
 </script>
-<script src="js/login.js"></script>
-<script src="js/filtroBusqueda.js"></script>
 
+<script src="js/filtroBusqueda.js"></script>
+<script>
+    document.getElementById('cerrarSesion').addEventListener('click', function() {
+        // Aquí puedes agregar lógica adicional antes de redirigir a /salir
+        var confirmacion = confirm('¿Estás seguro de que deseas cerrar sesión?');
+        if (confirmacion) {
+            window.location.href = '/salir';
+        }
+    });
+</script>
 </html>
